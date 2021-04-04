@@ -4,48 +4,48 @@ By Matthew Chea
 
 ## To install and run:
 
--git clone https://github.com/mattachea/Youtube-tracker.git
+- git clone https://github.com/mattachea/Youtube-tracker.git
 
--cd YoutubeTracker
+- cd YoutubeTracker
 
--npm install
+- npm install
 
--set up Postgres database
+- set up Postgres database
 
--add the database credentials and Youtube API key in the .env file
+- add the database credentials and Youtube API key in the .env file
 
--node index.js
+- node index.js
 
 ### Examples:
 
 I used postman to test the endpoints:
 
--GET http://localhost:3000/channels/
+- GET http://localhost:3000/channels/
 
--GET http://localhost:3000/videos/
+- GET http://localhost:3000/videos/
 
--GET http://localhost:3000/videosMetrics/
+- GET http://localhost:3000/videosMetrics/
 
--GET http://localhost:3000/fastestGrowingPastWeek
+- GET http://localhost:3000/fastestGrowingPastWeek
 
--PUT http://localhost:3000/channels/UCiGm_E4ZwYSHV3bcW1pnSeQ
+- PUT http://localhost:3000/channels/UCiGm_E4ZwYSHV3bcW1pnSeQ
 
 ## Endpoints
 
--/videos
-returns all videos in database
+- /videos
+  returns all videos in database
 
--/channels
-returns all channels in database
+- /channels
+  returns all channels in database
 
--/videosMetrics
-returns all data for video metrics
+- /videosMetrics
+  returns all data for video metrics
 
--/fastestGrowing
-returns the top five fastest growing videos (by view count) over this past week
+- /fastestGrowing
+  returns the top five fastest growing videos (by view count) over this past week
 
--/channels/:id
-refreshes channel information and all its videos' information, and tracks growth for the channel's videos
+- /channels/:id
+  refreshes channel information and all its videos' information, and tracks growth for the channel's videos
 
 ## Database
 
