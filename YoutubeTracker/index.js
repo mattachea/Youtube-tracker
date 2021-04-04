@@ -9,6 +9,7 @@ app.get("/videos/", api.getVideos);
 app.get("/videosMetrics/", api.getVideosMetrics);
 app.get("/channels", api.getChannels);
 app.get("/fastestGrowingPastWeek", api.getFastestGrowingVideosPastWeek);
+
 app.put("/channels/:id", api.refreshChannel);
 
 app.listen(port, () => {

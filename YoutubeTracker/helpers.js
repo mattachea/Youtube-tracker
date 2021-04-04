@@ -2,7 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const db = require("./queries");
 
-// get information on the channel, makes a query to insert/update channel data
+// get information on the channel, makes a query to insert/update information for the channel
 const refreshChannelInformation = async (id) => {
   const jsonData = await axios.get(
     `https://youtube.googleapis.com/youtube/v3/channels?part=snippet,contentDetails,statistics&key=${process.env.YOUTUBEAPIKEY}&id=${id}`

@@ -47,6 +47,7 @@ const refreshChannel = async (req, res) => {
   }
 };
 
+// get the top five fastest growing videos by view count in the past week
 const getFastestGrowingVideosPastWeek = async (req, res) => {
   try {
     const queryResult = await db.getTopFiveFastestGrowingVideosWeek();
