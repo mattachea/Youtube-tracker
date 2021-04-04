@@ -2,45 +2,47 @@
 
 By Matthew Chea
 
-## To run:
+## To install and run:
 
-git clone https://github.com/mattachea/Youtube-tracker.git
-cd YoutubeTracker
-npm install
+-git clone https://github.com/mattachea/Youtube-tracker.git
 
-You can can the database credentials and Youtube API key in the .env file
+-cd YoutubeTracker
+
+-npm install
+
+-node index.js
+
+You can change the database credentials and Youtube API key in the .env file
 
 ### Examples:
 
 I used postman to test the endpoints:
 
-GET http://localhost:3000/channels/
+-GET http://localhost:3000/channels/
 
-GET http://localhost:3000/videos/
+-GET http://localhost:3000/videos/
 
-GET http://localhost:3000/videosMetrics/
+-GET http://localhost:3000/videosMetrics/
 
-GET http://localhost:3000/fastestPastWeek
+-GET http://localhost:3000/fastestGrowingPastWeek
 
-GET http://localhost:3000/fastestPastFiveMinutes
-
-PUT http://localhost:3000/channels/UCiGm_E4ZwYSHV3bcW1pnSeQ
+-PUT http://localhost:3000/channels/UCiGm_E4ZwYSHV3bcW1pnSeQ
 
 ## Endpoints
 
-/videos
+-/videos
 returns all videos in database
 
-/channels
+-/channels
 returns all channels in database
 
-/videosMetrics
+-/videosMetrics
 returns all data for video metrics
 
-/fastestGrowing
+-/fastestGrowing
 returns the top five fastest growing videos (by view count) over this past week
 
-/channels/:id
+-/channels/:id
 refreshes channel information and all its videos' information, and tracks growth for the channel's videos
 
 ## Database
@@ -105,9 +107,11 @@ https://www.googleapis.com/youtube/v3/videos?key={api_key}&part=snippet,statisti
 
 ## Top 5 Fastest Growing Videos
 
+```sql
 select video_id, max(view_count) as max_views, min(view_count) as min_views, max(view_count)::INTEGER-min(view_count)::INTEGER as views
 from videos_metrics
 where time_updated > now() - interval '5 hour'
 group by video_id
 order by views desc
 limit 5;
+```
