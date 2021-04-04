@@ -39,3 +39,5 @@ create index videos_index_for_metrics on videos_metrics (video_id, time_updated)
 create index channel_index_for_metrics on videos_metrics (channel_id);
 
 ```
+
+## Google API
