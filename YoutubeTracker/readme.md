@@ -112,7 +112,7 @@ https://www.googleapis.com/youtube/v3/videos?key={api_key}&part=snippet,statisti
 ```sql
 select video_id, max(view_count) as max_views, min(view_count) as min_views, max(view_count)::INTEGER-min(view_count)::INTEGER as views
 from videos_metrics
-where time_updated > now() - interval '5 hour'
+where time_updated > now() - interval '1 week'
 group by video_id
 order by views desc
 limit 5;
