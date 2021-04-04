@@ -10,9 +10,11 @@ By Matthew Chea
 
 -npm install
 
--node index.js
+-set up Postgres database
 
-You can change the database credentials and Youtube API key in the .env file
+-add the database credentials and Youtube API key in the .env file
+
+-node index.js
 
 ### Examples:
 
