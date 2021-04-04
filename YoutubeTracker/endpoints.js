@@ -47,9 +47,20 @@ const refreshChannel = async (req, res) => {
   }
 };
 
+const getFastestGrowingVideosPastWeek = async (req, res) => {
+  try {
+    const queryResult = await db.getTopFiveFastestGrowingVideosWeek();
+    res.status(200).json(queryResult);
+  } catch (err) {
+    console.error(err);
+    res.status(403).json(err);
+  }
+};
+
 module.exports = {
   getChannels,
   getVideos,
   getVideosMetrics,
   refreshChannel,
+  getFastestGrowingVideosPastWeek,
 };
