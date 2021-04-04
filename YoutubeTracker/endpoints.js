@@ -1,5 +1,5 @@
-require("dotenv").config();
-const axios = require("axios");
+const helpers = require("./helpers");
+const db = require("./queries");
 
 // get all channels
 const getChannels = async (req, res) => {
@@ -11,6 +11,7 @@ const getChannels = async (req, res) => {
     res.status(403).json(err);
   }
 };
+
 //get all videos
 const getVideos = async (req, res) => {
   try {
@@ -33,8 +34,22 @@ const getVideosMetrics = async (req, res) => {
   }
 };
 
+// refreshes channel information and refreshes all its videos' information and metrics
+const refreshChannel = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const channelUpdated = await helpers.refreshChannelInformation(id);
+    await helpers.refreshVideos(id, channelUpdated); //waits for channel refresh
+    res.status(201).json(`channel_id ${id}: updated`);
+  } catch (err) {
+    console.error(err);
+    res.status(403).json(`channel_id ${id}: error\n ${err}`);
+  }
+};
+
 module.exports = {
   getChannels,
   getVideos,
   getVideosMetrics,
+  refreshChannel,
 };
