@@ -107,7 +107,27 @@ https://www.googleapis.com/youtube/v3/videos?key={api_key}&part=snippet,statisti
 
 - couldn't find a better way other than one call per videoId to get video statistics
 
-## Top 5 Fastest Growing Videos
+## Queries
+
+- Inserting / Updating channel information
+
+```sql
+INSERT INTO channels (channel_id, channel_url, title, description, view_count, subscriber_count, video_count, image_url, time_created) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT (channel_id) DO UPDATE SET (channel_id, channel_url, title, description, view_count, subscriber_count, video_count, image_url, time_created) = ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+```
+
+- Inserting / Updating video information (I used a library called pg-promise to perform multi-row inserts)
+
+```sql
+INSERT INTO videos (video_id, channel_id, title, duration, image_url, time_published) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT (video_id) DO UPDATE SET (title, duration, image_url, time_published) = ($3, $4, $5, $6)
+```
+
+- Inserting / Updating video metric information
+
+```sql
+INSERT INTO videos_metrics (video_id, view_count, like_count, dislike_count, comment_count) VALUES ($1, $2, $3, $4, $5)
+```
+
+### Top 5 Fastest Growing Videos
 
 ```sql
 select video_id, max(view_count) as max_views, min(view_count) as min_views, max(view_count)::INTEGER-min(view_count)::INTEGER as new_views
